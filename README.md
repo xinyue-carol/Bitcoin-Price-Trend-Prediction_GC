@@ -3,7 +3,11 @@
  [Dataset Selection](#dataset-selection)\
  [Dataset Dimension Reduction](#dimention-reducation)\
  [Method 1_SVM](#method-1_SVM)
-
+ [Method 2_Decision Tree](#method-2_decision-tree)
+ [Method 3_Neural Network](#method 3_neural-network)
+ [Reference](#reference)
+ 
+ 
 # Introduction
 Cryptocurrency becoming more and more popular, many big companies also choose investing in Bitcoin as part of their investement profolio. And crypptocurrency trading platform, like Coinbase, make the crypotocuurancy trading to the public. With this heat of the Cryptocuurency, I am curious wether we can predicate the change of the cryptocurrency price. In this project me and my partner applied different Machine Learning Methods to do the predict if Bitcoin price will go up or down future 30 business days,of and we eventually pick out 3 methods that perform the best: SVM, Decision Tree and Neural Network. We picked totally 17 features to do the predication, and we used PCA to do a dimension deduction and used 5 components, which can represent 91% of the variables. Final step, we built a voting system using the results from those 3 methods and able to achieve a 93% accuracy in the testing set. \
 The Program language used in this project is Python, and main package including Pandas, Numpy, Scikit-lean.
@@ -118,4 +122,19 @@ As the value of ‘c’ decreases the model underfits.
 As the value of ‘ γ’ increases the model gets overfits.
 As the value of ‘ γ’ decreases the model underfits.
 After we tested on different number, we have when c is 100, and gamma is 1, using RBF kernel, the SVM model can achieve 91.4% accuracy on testing data set.
+
+# Method 2_Decision Tree
+The decision tree is supervised machine learning algorithms. It can be used for both a classification problem and regression problem. And for decision tree to perform well, we need to choose propore maxmun depth of the tree and the minmum sample leave of the tree. 
+I test on different parameter and choice the one perform the best.
+```
+from sklearn.tree import DecisionTreeClassifier
+import matplotlib.pyplot as plt
+from sklearn import tree
+import graphviz
+
+```
+# Method 3_Neural Network
+Multi-layer Perceptron (MLP) is a supervised learning algorithm that learns a function f(⋅):𝑅^𝑚→ 𝑅^𝑜   by training on a dataset, where m is the number of dimensions for input and o is the number of dimensions for output. 	
+
+# Reference
 
