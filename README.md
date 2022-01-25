@@ -111,11 +111,11 @@ for kernel in kernels:
 ```
 There are two parameter we need to adjust in order have a better results.
 1. C: Inverse of the strength of regularization.
-Behavior: As the value of ‘c’ increases the model gets overfits.
+As the value of ‘c’ increases the model gets overfits.
 As the value of ‘c’ decreases the model underfits.
 
 2.   γ : Gamma (used only for RBF kernel)
-Behavior: As the value of ‘ γ’ increases the model gets overfits.
+As the value of ‘ γ’ increases the model gets overfits.
 As the value of ‘ γ’ decreases the model underfits.
 After we tested on different number, we have when c is 100, and gamma is 1, using RBF kernel, the SVM model can achieve 91.4% accuracy on testing data set.
 
