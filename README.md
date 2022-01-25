@@ -93,7 +93,7 @@ Results: R^2=0.7546
 
 ## Gaussian Radial Basis Function (RBF)
 Formula:<img width="280" alt="Picture1" src="https://user-images.githubusercontent.com/71731146/150930686-f2a1558b-c53a-46e5-bed8-e58073561f74.png">
-Results: R^2=0.80660
+Results: R^2=0.80660\
 Here is the code to apply SVM model to our data set
 ```
 from sklearn.model_selection import train_test_split
@@ -109,4 +109,13 @@ for kernel in kernels:
   score = svc.score(x_test, y_test)
   print('kernels for', kernel, 'r2 socre is',score)
 ```
+There are two parameter we need to adjust in order have a better results.
+1. C: Inverse of the strength of regularization.
+Behavior: As the value of ‘c’ increases the model gets overfits.
+As the value of ‘c’ decreases the model underfits.
+
+2.   γ : Gamma (used only for RBF kernel)
+Behavior: As the value of ‘ γ’ increases the model gets overfits.
+As the value of ‘ γ’ decreases the model underfits.
+After we tested on different number, we have when c is 100, and gamma is 1, using RBF kernel, the SVM model can achieve 91.4% accuracy on testing data set.
 
