@@ -124,17 +124,71 @@ As the value of ‘ γ’ decreases the model underfits.
 After we tested on different number, we have when c is 100, and gamma is 1, using RBF kernel, the SVM model can achieve 91.4% accuracy on testing data set.
 
 # Method 2_Decision Tree
-The decision tree is supervised machine learning algorithms. It can be used for both a classification problem and regression problem. And for decision tree to perform well, we need to choose propore maxmun depth of the tree and the minmum sample leave of the tree. 
-I test on different parameter and choice the one perform the best.
+The decision tree is supervised machine learning algorithms. It can be used for both a classification problem and regression problem. And for decision tree to perform well, we need to choose propore maxmun depth of the tree and the minmum sample leaves of the tree. 
+I test on different parameter and choice the one perform the best. Since we only have 5 features, so I choose the 6 as the minmum sample leaves of the tree, and for the maxinmun of the tree, I test the depth from 1 to 10 , and it shows when the depth is 8, the accurate is the highest.
 ```
 from sklearn.tree import DecisionTreeClassifier
 import matplotlib.pyplot as plt
 from sklearn import tree
 import graphviz
 
+depth_list=[1,2,3,4,5,6,7,8,9,10]
+for i in depth_list:
+  treeClassifier=DecisionTreeClassifier(max_depth=i,min_samples_leaf=6)
+  treeClassifier.fit(x_train,y_train)
+  y_pred=treeClassifier.predict(x_test)
+  a_score.append(accuracy_score(y_test, y_pred))
 ```
+<img width="521" alt="Screen Shot 2022-01-25 at 10 15 43 PM" src="https://user-images.githubusercontent.com/71731146/151113032-55362e5a-51c4-446c-b5f8-14c9881dbc35.png">
+
+```
+#using max_depth=8,min_samples_leaf=6 to train the data
+treeClassifier2=DecisionTreeClassifier(max_depth=8,min_samples_leaf=6)
+treeClassifier2.fit(x_train,y_train)
+y_p1 = treeClassifier2.predict(x_test)
+y_p1
+```
+
+And we visualized the tree using graphviz
+```
+treedata=tree.export_graphviz(treeClassifier2,filled=True, feature_names=['f1','f2','f3', 'f4', 'f5'],class_names=['0','1'])
+graphviz.Source(treedata)
+```
+<img width="960" alt="Picture_dt" src="https://user-images.githubusercontent.com/71731146/151113343-62833060-8f20-45e2-b9a8-fa2fe848cb23.png">
+
 # Method 3_Neural Network
-Multi-layer Perceptron (MLP) is a supervised learning algorithm that learns a function f(⋅):𝑅^𝑚→ 𝑅^𝑜   by training on a dataset, where m is the number of dimensions for input and o is the number of dimensions for output. 	
+Multi-layer Perceptron (MLP) is a supervised learning algorithm, and it is a good method to slove a nonlinear binary classification problem.
+We need to choose a slover, which is the method to optimize the weight, and the activation function between layers. We tried different combination with a fix layers, and have results as following, so we decided to use the combination with the higest accuracy rate, which is ‘relu’ for activation function and lbfgs' for solver. \
+The size of hidden layers we use here is (5, 2): 5 layers and 2 neurons each.
+It is understandable that the increase of layers and neurons will increase the accuracy, but in order to avoid overfitting, we decide to choose size (5,2).
+
+
+<img width="765" alt="Screen Shot 2022-01-25 at 9 45 46 PM" src="https://user-images.githubusercontent.com/71731146/151110250-60906ed3-4244-4262-93d5-f40d96dedef6.png">
+
+```
+#Import MlPClassifier from sklearn
+from sklearn.neural_network import MLPClassifier
+
+# splitting the data
+x_train, x_test, y_train, y_test = train_test_split(X, y_tl, test_size = 0.2, random_state =22)
+# x_train, x_test, y_train, y_test = train_test_split(X, y_tl, test_size = 0.2, shuffle=False)
+
+clf = MLPClassifier(solver='lbfgs',activation='relu', alpha=1e-5,
+                    hidden_layer_sizes=(5, 2), random_state=1)
+clf.fit(x_train, y_train)
+
+# testing data
+y_p3 = clf.predict(x_test)
+y_p3
+
+#check the performence
+score = clf.score(x_test, y_test)
+score
+
+```
+
+
+
 
 # Reference
 
