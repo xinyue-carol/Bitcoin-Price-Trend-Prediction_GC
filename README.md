@@ -4,7 +4,8 @@
  [Dataset Dimension Reduction](#dimention-reducation)\
  [Method 1_SVM](#method-1_SVM)\
  [Method 2_Decision Tree](#method-2_decision-tree)\
- [Method 3_Neural Network](#method 3_neural network)\
+ [Method 3_Neural Network](#method-3_neural network)\
+ [Results](#results)
  [Reference](#reference)
  
  
@@ -187,7 +188,23 @@ score
 
 ```
 
+# Voting system
+So now, we have 3 model to perform the prediction the classsification, we combine those 3 results together to vote for the final results, and make the final decision:
+```
+tmp = pd.DataFrame(y_test)
+tmp['y_dt'] = y_p1
+tmp['y_svm'] = y_p2
+tmp['y_nn'] = y_p3
+tmp['y_sum'] = tmp['y_dt'] + tmp['y_svm'] + tmp['y_nn']
+tmp['y_pre'] = np.where(tmp['y_sum']>=2,1,0)
+print( round(1 - sum(abs(tmp['y_pre'] - tmp['class']))/ tmp.shape[0], 4)*100, '%')
+```
+The result from the voting system performs better than all the single methods, which give us the highest accuracy-92.57%
 
+# Summary
+Decision Tree, SVM, and Neural net works are all works very well on our high dimensional bitcoin price data set, they all give a good classification on the gain or lost on the future bitcoin price. The Voting system that built with all those high performance methods can achieve a better performance compare to each single one.
+Choosing a method that fits the dataset’s feature and goal is the key to built a good performance model.\
+For the futhure improvement, the model can include more sentimental features,for example,bitcoin and crypto currency related news, big influencer’s opinions ,twitters idea or personal security position. It might be also helpful to include more detailed bitcoin trending data.
 
 
 # Reference
