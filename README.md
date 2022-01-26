@@ -1,7 +1,7 @@
 # Bitcoint-Price-Trend-Prediction_GC
  [Introduction](#introduction)\
  [Dataset Selection](#dataset-selection)\
- [Dataset Dimension Reduction](#dimention-reducation)\
+ [Dataset Dimension Reduction](#dimension-reducation)\
  [Method 1_SVM](#method-1_svm)\
  [Method 2_Decision Tree](#method-2_decision-tree)\
  [Method 3_Neural Network](#method-3_neural-network)\
@@ -41,7 +41,7 @@ X=df_new[['high', 'low', 'open', 'close', 'volumeto', 'ETH', 'SP500',
        'wiki_Cryptocurrency', 'wiki_Coinbase']]
 y=df_new[['class']]
 ```
-# Dimention Reducation
+# Dimension Reducation
 Now we have two questions:
 1. Are all those 17 features affect the change of the BTC price? By how much?
 2. Can we use less features or dimensions of the data to represent all 17 features?\
@@ -69,11 +69,12 @@ PC_2: contains 18.89% of the variations
 PC_3: contains 9.99% of the variations
 PC_4: contains 5.14% of the variations
 PC_5: contains 2.61% of the variations
-Total first 5 component are enough to explain 91.94% of all variations, for following analysis, we are using this result as the input data. Here is about the data looks like:
+... 
+Total first 5 component are enough to explain 91.94% of all variations, for following analysis, we are using this result as the input data. Here is 5 components the data looks like:
 
 <img width="413" alt="Picture_PCA" src="https://user-images.githubusercontent.com/71731146/150928075-70593387-fd73-4d4b-80cc-219604c81290.png">\
 
-And I plot out first 3 component: 
+And I plot out first 3 components: 
 ```
 #plot data
 # import relevant libraries for 3d graph
