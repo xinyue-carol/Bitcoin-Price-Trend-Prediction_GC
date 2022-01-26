@@ -2,10 +2,11 @@
  [Introduction](#introduction)\
  [Dataset Selection](#dataset-selection)\
  [Dataset Dimension Reduction](#dimention-reducation)\
- [Method 1_SVM](#method-1_SVM)\
+ [Method 1_SVM](#method-1_svm)\
  [Method 2_Decision Tree](#method-2_decision-tree)\
- [Method 3_Neural Network](#method-3_neural network)\
- [Results](#results)
+ [Method 3_Neural Network](#method-3_neural-network)\
+ [Voting System](#voting-system)\
+ [Summary](#summary)\
  [Reference](#reference)
  
  
@@ -208,4 +209,7 @@ For the futhure improvement, the model can include more sentimental features,for
 
 
 # Reference
+https://en.wikipedia.org/wiki/Multilayer_perceptron \
+https://scikit-learn.org/stable/modules/neural_networks_supervised.html#classification \
+https://www.v7labs.com/blog/neural-networks-activation-functions \
 
