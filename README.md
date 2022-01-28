@@ -1,4 +1,4 @@
-# Bitcoint-Price-Trend-Prediction_GC
+# Bitcoin-Price-Trend-Prediction_GC
  [Introduction](#introduction)\
  [Dataset Selection](#dataset-selection)\
  [Dataset Dimension Reduction](#dimension-reducation)\
