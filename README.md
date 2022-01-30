@@ -15,13 +15,12 @@ Cryptocurrency is becoming more and more popular, to a point that many big compa
 The Program language used in this project is Python, and the main package includes Pandas, Numpy, Scikit-learn.
 
 # Dataset Selection
-We choose the data to build the dataset base one 3 part: 
-First, the Bitcoin itself, which includes open price, high price, low price, close price, and trading volume of Bitcoin, and also, to including some information of the ccyptocurrency market, we includ ETH (another popular cryptocurrency)daily close price. Second, traditional market index data and information-S&P 500, Russell 2000, and Crude Oil, Gold price, Silver price, EUR/USD, USD/JPY, and US 10-Yr-Bond rate. Last but not least, for sentement data, we choose the Wikipedia pageviews on key words ‘Bitcoin’, ‘Coinbase’ and ‘Cryptocurrency’.Time period for the dataset is all work days from 2016-06-13 to 2021-12-02, sample size 1374. Notice that though the crypotocurrency in trading on the daily based, however the traditional security market does not, so we delect all the weekend data. \
-Here is a quick review of our data.
+We choose the data to build the dataset base one 3 parts: \
+First, the Bitcoin itself, which includes open price, high price, low price, close price, and trading volume of Bitcoin, and also, to including some information of the cryptocurrency market, we include ETH (another popular cryptocurrency)daily close price. Second, traditional market index data and information-S&P 500, Russell 2000, and Crude Oil, Gold price, Silver price, EUR/USD, USD/JPY, and US 10-Yr-Bond rate. Last but not least, for sentiment data, we choose the Wikipedia pageviews on keywords ‘Bitcoin’, ‘Coinbase’ and ‘Cryptocurrency’.The time period for the dataset is all workdays from 2016-06-13 to 2021-12-02, sample size 1374. Notice that though the cryptocurrency in trading on a daily based, however, the traditional security market does not, so we detect all the weekend data.
 <img width="924" alt="Picture1" src="https://user-images.githubusercontent.com/71731146/150919766-c4862020-843c-4b3e-b424-c6cd6eca0b5f.png">\
-Since bitcion price flucuation is abnormal, as we can see from 2020 March to 2021 April, there was a 1200% increase. With this kinda of flucuation, it is very hard to predict a accurate price, but we can still try to predict the trend. \
+Since bitcoin price fluctuation is abnormal, as we can see from 2020 March to 2021 April, there was a 1200% increase. With this kind of fluctuation, it is very hard to predict an accurate price, but we can still try to predict the trend. \
 <img width="960" alt="price_change" src="https://user-images.githubusercontent.com/71731146/150920361-3ab1500c-980d-4ea7-bfd5-f310ab44037a.png">\
-So we calcualted bitcoin's price 30 day's return, and if the return is positive, we assgin the tuple with class 1, otherwise 0. And we will treat this as an classification problem, we tried to treat this as an regression problem, but the restults is not as good.
+So we calculated bitcoin's price 30 days' return, and if the return is positive, we assign the tuple with class 1, otherwise 0. And we will treat this as a classification problem, we tried to treat this as a regression problem, but the result is not as good. \
 <img width="735" alt="Screen Shot 2022-01-24 at 10 16 43 PM" src="https://user-images.githubusercontent.com/71731146/150921652-8bffc235-d544-470c-945c-3c7c69c29182.png">\
 Here is the code for first step of data cleaning: 
 ```
@@ -44,9 +43,9 @@ y=df_new[['class']]
 # Dimension Reducation
 Now we have two questions:
 1. Are all those 17 features affect the change of the BTC price? By how much?
-2. Can we use less features or dimensions of the data to represent all 17 features?\
-The Answer is: OF COURSE ! PCA(Principal Component Analysis) is a great tool to perform dimensionality reduction while preserving as much of the variance in the high dimensional space as possible. 
-BTW! Remember to scales the data first!
+2. Can we use fewer features or dimensions of the data to represent all 17 features?\
+The answer is: OF COURSE! PCA(Principal Component Analysis) is a great tool to perform dimensionality reduction while preserving as much of the variance in the high dimensional space as possible. 
+BTW! Remember to scale the data first!
 ```
 #Scale the data
 from sklearn.preprocessing import StandardScaler
@@ -70,7 +69,7 @@ PC_3: contains 9.99% of the variations
 PC_4: contains 5.14% of the variations
 PC_5: contains 2.61% of the variations
 ... 
-Total first 5 component are enough to explain 91.94% of all variations, for following analysis, we are using this result as the input data. Here is 5 components the data looks like:
+Total first 5 components are enough to explain 91.94% of all variations, for the following analysis, we are using this result as the input data. Here are 5 components the data looks like:
 
 <img width="413" alt="Picture_PCA" src="https://user-images.githubusercontent.com/71731146/150928075-70593387-fd73-4d4b-80cc-219604c81290.png">\
 
@@ -93,14 +92,14 @@ axis.set_zlabel("PC3", fontsize=10)
 <img width="593" alt="Screen Shot 2022-01-24 at 10 31 45 PM" src="https://user-images.githubusercontent.com/71731146/150923371-d6b8fe95-8f9f-4e67-ab48-70a5aa721375.png">
 
 # Method 1_SVM
-First Machine leaning we used here is Support Vector Machine (SVM), it is a great supervised learning methods for classification, and it also works great with high dimension data sets. The kernel selection plays a inportant rule when using SVM, it used to meansure the similarity of data points. As we can tell from the graph of 3 dimension data, two class are tangling together, intuitivly we can tell that the linear kernel won't able to seperate our data efectively, so we picked Polynomial(POLY) and Gaussian Radial Basis Function (RBF)
+The First Machine learning we used here is Support Vector Machine (SVM), it is a great supervised learning method for classification, and it also works great with high dimensional data sets. The kernel selection plays an important role when using SVM, it is used to measure the similarity of data points. As we can tell from the graph of 3 dimension data, two-class are tangling together, intuitively we can tell that the linear kernel won't be able to separate our data effectively, so we picked Polynomial(POLY) and Gaussian Radial Basis Function (RBF)
 ## Polynomial Kenel
 Formula: <img width="210" alt="Picture_poly" src="https://user-images.githubusercontent.com/71731146/150930363-2bd98bf9-9c79-4e91-bee6-9f8d6e0b13ee.png">
-Results: R^2=0.7546
+Result: R^2=0.7546
 
 ## Gaussian Radial Basis Function (RBF)
 Formula:<img width="280" alt="Picture1" src="https://user-images.githubusercontent.com/71731146/150930686-f2a1558b-c53a-46e5-bed8-e58073561f74.png">
-Results: R^2=0.80660\
+Result: R^2=0.80660\
 Here is the code to apply SVM model to our data set
 ```
 from sklearn.model_selection import train_test_split
@@ -127,8 +126,9 @@ As the value of ‘ γ’ decreases the model underfits.
 After we tested on different number, we have when c is 100, and gamma is 1, using RBF kernel, the SVM model can achieve 91.4% accuracy on testing data set.
 
 # Method 2_Decision Tree
-The decision tree is supervised machine learning algorithms. It can be used for both a classification problem and regression problem. And for decision tree to perform well, we need to choose propore maxmun depth of the tree and the minmum sample leaves of the tree. 
-I test on different parameter and choice the one perform the best. Since we only have 5 features, so I choose the 6 as the minmum sample leaves of the tree, and for the maxinmun of the tree, I test the depth from 1 to 10 , and it shows when the depth is 8, the accurate is the highest.
+The decision tree is a supervised machine learning algorithm. It can be used for both a classification problem and a regression problem. And for the decision tree to perform well, we need to choose a proper maximum depth of the tree and the minimum sample leaves of the tree. 
+I test on different parameters and choose the one that performs the best. Since we only have 5 features, I choose the 6 as the minimum sample leaves of the tree, and for the maximum of the tree, I test the depth from 1 to 10, and it shows when the depth is 8, the accuracy is the highest.
+
 ```
 from sklearn.tree import DecisionTreeClassifier
 import matplotlib.pyplot as plt
@@ -160,10 +160,10 @@ graphviz.Source(treedata)
 <img width="960" alt="Picture_dt" src="https://user-images.githubusercontent.com/71731146/151113343-62833060-8f20-45e2-b9a8-fa2fe848cb23.png">
 
 # Method 3_Neural Network
-Multi-layer Perceptron (MLP) is a supervised learning algorithm, and it is a good method to slove a nonlinear binary classification problem.
-We need to choose a slover, which is the method to optimize the weight, and the activation function between layers. We tried different combination with a fix layers, and have results as following, so we decided to use the combination with the higest accuracy rate, which is ‘relu’ for activation function and lbfgs' for solver. \
+Multi-layer Perceptron (MLP) is a supervised learning algorithm, and it is a good method to solve a nonlinear binary classification problem.
+We need to choose a solver, which is the method to optimize the weight, and the activation function between layers. We tried the different combinations with a fixed layer, and have results as follows, so we decided to use the combination with the highest accuracy rate, which is ‘relu’ for activation function and lbfgs' for the solver. \
 The size of hidden layers we use here is (5, 2): 5 layers and 2 neurons each.
-It is understandable that the increase of layers and neurons will increase the accuracy, but in order to avoid overfitting, we decide to choose size (5,2).
+It is understandable that the increase of layers and neurons will increase the accuracy, but in order to avoid overfitting, we decide to choose the size (5,2).
 
 
 <img width="765" alt="Screen Shot 2022-01-25 at 9 45 46 PM" src="https://user-images.githubusercontent.com/71731146/151110250-60906ed3-4244-4262-93d5-f40d96dedef6.png">
@@ -191,7 +191,7 @@ score
 ```
 
 # Voting system
-So now, we have 3 model to perform the prediction the classsification, we combine those 3 results together to vote for the final results, and make the final decision:
+So now, we have 3 model to perform the prediction the classification, we combine those 3 results together to vote for the final results, and make the final decision:
 ```
 tmp = pd.DataFrame(y_test)
 tmp['y_dt'] = y_p1
@@ -204,10 +204,9 @@ print( round(1 - sum(abs(tmp['y_pre'] - tmp['class']))/ tmp.shape[0], 4)*100, '%
 The result from the voting system performs better than all the single methods, which give us the highest accuracy-92.57%
 
 # Summary
-Decision Tree, SVM, and Neural net works are all works very well on our high dimensional bitcoin price data set, they all give a good classification on the gain or lost on the future bitcoin price. The Voting system that built with all those high performance methods can achieve a better performance compare to each single one.
-Choosing a method that fits the dataset’s feature and goal is the key to built a good performance model.\
-For the futhure improvement, the model can include more sentimental features,for example,bitcoin and crypto currency related news, big influencer’s opinions ,twitters idea or personal security position. It might be also helpful to include more detailed bitcoin trending data.
-
+Decision Tree, SVM, and Neural networks are all works very well on our high dimensional bitcoin price data set, they all give a good classification on the gain or loss on the future bitcoin price. The Voting system built with all those high-performance methods can achieve a better performance compared to every single one.
+Choosing a method that fits the dataset’s feature and goal is the key to building a good performance model.\
+For further improvement, the model can include more sentimental features, for example, bitcoin and crypto currency-related news, big influencer’s opinions, twitters idea, or personal security position. It might be also helpful to include more detailed bitcoin trending data.
 
 # Reference
 https://en.wikipedia.org/wiki/Multilayer_perceptron \
