@@ -11,6 +11,7 @@
  
  
 # Introduction
+This Project is cooperated with Jerry Chow.\
 Cryptocurrency is becoming more and more popular, to a point that many big companies, like Tesla, also choose to invest in Bitcoin as part of their investment portfolio. And cryptocurrency trading platforms, like Coinbase, make the cryptocurrency trading to the public. With this heat of Cryptocurrency, I am wondering if we can predicate the change of the cryptocurrency price. In this project, I and my partner applied different Machine Learning Methods to do the predict if Bitcoin price will go up or down future 30 business days, and we eventually pick out 3 methods that perform the best: SVM, Decision Tree, and Neural Network. We picked a total of 17 features to do the prediction, and we used PCA to do a dimension deduction and used 5 components, which can represent 91% of the variables. In the final step, we built a voting system using the results from those 3 methods and were able to achieve a 93% accuracy in the testing set.\
 The Program language used in this project is Python, and the main package includes Pandas, Numpy, Scikit-learn.
 
